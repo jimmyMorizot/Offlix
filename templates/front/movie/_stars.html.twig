@@ -1,0 +1,38 @@
+<div
+	class="d-flex mb-4" style="color: orange;">
+
+	{# Je set le nombre d'étoile à 0 #}
+	{% set star = 0 %}
+	{# une boucle de 1 à 5 #}
+	{% for item in 1..5 %}
+		{# Ici on gère les étoiles pleines #}
+		{% if item <= movie.rating %}
+			{% set star = star + 1 %}
+			<i class="bi bi-star-fill"></i>
+		{% endif %}
+	{% endfor %}
+	{# ici mes demis étoiles #}
+	{% if star < movie.rating %}
+		{% set star = star + 1 %}
+		<i class="bi bi-star-half"></i>
+	{% endif %}
+	{# Ici je gère mes étoiles vides #}
+	{% if star < 5 %}
+		{% for star in star..4 %}
+			<i class="bi bi-star"></i>
+		{% endfor %}
+	{% endif %}
+
+	<span class="ps-1">{{movie.rating}}</span>
+</div>
+
+{# Autre façon de gérer les étoiles #}
+{# {% for i in range(0, 4) %}
+	{% if movie.rating - i + 0.0000000001 >= 0.8 %}
+		<i class="bi bi-star-fill"></i>
+	{% elseif movie.rating - i - 0.0000000001 <= 0.2 %}
+		<i class="bi bi-star"></i>
+	{% else %}
+		<i class="bi bi-star-half"></i>
+	{% endif %}
+{% endfor %} #}

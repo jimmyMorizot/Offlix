@@ -1,0 +1,10 @@
+POST http://localhost:8000/api/movies HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Mon titre 4",
+    "synopsis": "Mon contenu 2",
+    "summary": "Mon resumé 2",
+    "poster": "Mon affiche 2",
+    "type": "série 2"
+}

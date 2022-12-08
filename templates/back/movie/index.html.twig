@@ -1,0 +1,55 @@
+{% extends 'back/nav.html.twig' %}
+
+{% block title %}Liste de films et séries{% endblock %}
+
+{% block body %}
+
+    <h1>Liste de films et séries</h1>
+
+    {# Ici fragment à inclure #}
+    {% include "_flash_message.html.twig" %}
+
+    {# admin seulement #}
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_back_movie_new') }}" class="btn btn-primary">Nouveau film (ou série)</a>
+    {% endif %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Affiche</th>
+                <th>Titre</th>
+                <th>Sorti le</th>
+                <th>Type</th>
+                <th>Note</th>
+                <th>-</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for movie in movies %}
+            <tr>
+                <td>{{ movie.id }}</td>
+                <td><img src="{{ movie.poster }}" alt="Affiche de {{ movie.title }}" height="80"></td>
+                <td>{{ movie.title }}</td>
+                <td>{{ movie.releaseDate ? movie.releaseDate|date('Y-m-d') : '' }}</td>
+                <td>{{ movie.type }}</td>
+                <td>{{ movie.rating }}</td>
+                <td>
+                    <a href="{{ path('app_back_movie_show', {'id': movie.id}) }}" class="btn btn-sm btn-success">Voir</a>
+                    {# admin seulement #}
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_back_movie_edit', {'id': movie.id}) }}" class="btn btn-sm btn-warning">Modifier</a>
+                    {% endif %}
+                    <a href="{{ path('app_back_casting_index', {'id': movie.id}) }}" class="btn btn-sm btn-secondary">Casting</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">Aucun enregistrement trouvé.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{
+	"errors": {
+        {% for error in errors %}
+		
+		"{{ error.propertyPath }}": [
+            
+			"This value is not a valid URL.",
+			"This value is too short. It should have 10 characters or more."
+		],
+		
+         {% endfor %}
+	}
+}

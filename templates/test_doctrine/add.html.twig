@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<div class="container-xl bg-light p-5 border-top">
+		<form method='post' action "{{path('testDoctrine_addValid')}}">
+			<div class="mb-3">
+				<label for="title" class="form-label">Titre du film</label>
+				<input type="text" class="form-control" id="title" name="title">
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+{% endblock %}

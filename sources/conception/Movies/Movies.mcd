@@ -1,0 +1,23 @@
+:
+user: id_user, email, password, pseudo, role
+:
+
+
+actor: id_actor, name, surname
+review, 0N movie, 0N user : content, rating, published_at
+:
+
+
+plays, 0N actor, 0N movie: role, credit_order
+movie : id_movie, title, release_date, summary, synopsis, poster, duration
+belong, 0N movie, 0N genre
+
+
+:
+has, 0N movie, 11 season
+genre: id_genre, name
+
+
+:
+season: id_season, number_episodes, number_season, release_date
+:

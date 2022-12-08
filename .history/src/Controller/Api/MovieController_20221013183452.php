@@ -1,0 +1,116 @@
+<?php
+
+namespace App\Controller\Api;
+
+use Serializable;
+use App\Entity\Movie;
+use App\Repository\MovieRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+class MovieController extends AbstractController
+{
+    /**
+     * Get Collection
+     * 
+     * @Route("/api/movies", name="app_api_movies_get_collection", methods={"GET"})
+     */
+    public function getCollection(MovieRepository $movieRepository): JsonResponse
+    {
+        // Les données
+        // @todo paginer les résultats
+        $movies = $movieRepository->findAll();
+
+        return $this->json(
+            $movies,
+            Response::HTTP_OK,[],[
+                'groups' => 'api_movies_get_collection'
+            ]
+        );
+    }
+
+    /**
+     * Get Item
+     * 
+     * @Route("/api/movies/{id}", name="app_api_movies_get_item", methods={"GET"})
+     */
+    public function getItem(Movie $movie = null): JsonResponse
+    {
+        // 404 ?
+        if (null === $movie) {
+            throw $this->createNotFoundException('Film non trouvé');
+        }
+
+        return $this->json(
+            $movie,
+            Response::HTTP_OK,[],[
+                'groups' => 'api_movies_get_item'
+            ]
+        );
+    }
+
+    /**
+     * Create Item
+     *
+     * @Route("/api/movies", name="app_api_movies_create_item", methods={"POST"})
+     */
+    public function createItem(Request $request, SerializerInterface $serializer, EntityManagerInterface $em )
+    {
+        $getJson =$request->getContent();
+
+        $movie = $serializer->deserialize($getJson, Movie::class, 'json');
+
+        $movie->setCreatedAt(new \DateTime());
+
+        $em->persist($movie);
+        $em->flush();
+
+        return $this->json(
+            $movie, 201, [],[
+                'groups' => 'api_movies_create_item'
+            ]
+        );
+
+    }
+
+    /**
+     * 
+     * @Route("/api/movies/{id}", name="app_api_movies_update_item", methods={"POST"})
+     * 
+     */
+    public function update ($id, Request $request) {
+        // Extract data from body request
+        $title = $request->input('title');
+
+        // Check data integrity and return error if needed
+        if ( empty($title) ) return response(null, 422);
+
+        // Get data from DB and get Task object populated
+        $task = Task::find($id);
+        if ( !$task) return response(null, 404);
+        $task->title = $title;
+
+        // Save data into db and return response according_to result
+        $result = $task->save();
+        if ( !$result ) return response(null, 500);
+        else return response()->json($task, 200);
+    }
+
+    public function delete ($id) {
+
+        // Load task with id
+        $task = Task::find($id);
+        if ( !$task ) return response(null, 404);
+
+        $result = $task->delete();
+        if ( !$result ) return response(null, 500);
+        else return response(null, 200);
+
+
+    }
+}

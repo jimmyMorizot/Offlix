@@ -1,0 +1,1 @@
+DELETE http://localhost:8000/api/movies/176 HTTP/1.1

@@ -1,0 +1,14 @@
+{
+	"errors": {
+        {% for error in errors %}
+		
+		"poster": [
+			"This value is not a valid URL.",
+			"This value is too short. It should have 10 characters or more."
+		],
+		"duration": [
+			"This value should not be blank."
+		]
+         {% endfor %}
+	}
+}

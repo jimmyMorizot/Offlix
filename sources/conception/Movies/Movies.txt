@@ -1,0 +1,8 @@
+actor (_id_actor_, name, surname)
+belong (_#id_movie_, _#id_genre_)
+genre (_id_genre_, name)
+movie (_id_movie_, title, release_date, summary, synopsis, poster, duration)
+plays (_#id_actor_, _#id_movie_, role, credit_order)
+review (_#id_movie_, _#id_user_, content, rating, published_at)
+season (_id_season_, number_episodes, number_season, release_date, #id_movie)
+user (_id_user_, email, password, pseudo, role)

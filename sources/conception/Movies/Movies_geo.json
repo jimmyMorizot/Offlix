@@ -1,0 +1,37 @@
+{
+  "width": 322,
+  "height": 642,
+  "cx": [
+    [ "user", 176 ],
+    [ "actor", 54 ],
+    [ "review", 176 ],
+    [ "plays", 54 ],
+    [ "movie", 176 ],
+    [ "belong", 281 ],
+    [ "has", 176 ],
+    [ "genre", 281 ],
+    [ "season", 176 ]
+  ],
+  "cy": [
+    [ "user", 68 ],
+    [ "actor", 194 ],
+    [ "review", 194 ],
+    [ "plays", 337 ],
+    [ "movie", 337 ],
+    [ "belong", 337 ],
+    [ "has", 472 ],
+    [ "genre", 472 ],
+    [ "season", 582 ]
+  ],
+  "shift": [
+    [ "review,movie,0", 0 ],
+    [ "review,user,0", 0 ],
+    [ "plays,actor,0", 0 ],
+    [ "plays,movie,0", 0 ],
+    [ "belong,movie,0", 0 ],
+    [ "belong,genre,0", 0 ],
+    [ "has,movie,0", 0 ],
+    [ "has,season,0", 0 ]
+  ],
+  "ratio": []
+}

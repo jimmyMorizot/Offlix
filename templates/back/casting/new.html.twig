@@ -1,0 +1,11 @@
+{% extends 'back/nav.html.twig' %}
+
+{% block title %}New Casting{% endblock %}
+
+{% block body %}
+    <h1>Create new Casting</h1>
+
+    {{ include('back/casting/_form.html.twig') }}
+
+    <a href="{{ path('app_back_casting_index', {id: movie.id}) }}">back to list</a>
+{% endblock %}

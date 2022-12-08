@@ -1,0 +1,12 @@
+{# Exemple de fragment #}
+
+{# Première boucle je récupère le label et le tableau de messages (même s'il n'y en a qu'un) #}
+	{% for label, messages in app.flashes %}
+	{# Deuxième boucle je recupere les messages dans le tableau de messages #}
+		{% for message in messages %}
+			<div class="alert alert-{{label}} alert-dismissible fade show" role="alert"> {{message}}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	{% endfor %}
+{% endfor %}
+

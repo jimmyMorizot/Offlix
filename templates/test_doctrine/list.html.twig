@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+{% block body %}
+{# Les saison ne sont pas dans le dump car je ne les utilises pas#}
+<pre>
+    {{ dump(movies) }}
+</pre>
+{# movie avec le season, pourquoi ? parce que j'y accède #}
+{% for movie in movies %}
+    {% for season in movie.seasons %}
+        <pre>
+            {{ dump(season) }}
+        </pre>
+    {% endfor %}
+{% endfor %}
+{% endblock %}

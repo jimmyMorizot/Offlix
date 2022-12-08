@@ -1,0 +1,38 @@
+{% extends 'back/nav.html.twig' %}
+
+{% block title %}Casting index{% endblock %}
+
+{% block body %}
+    <h1>Le casting de</h1>
+    <h2>{{ movie.title }}</h2>
+
+    <a href="{{ path('app_back_casting_new', {id: movie.id}) }}">Nouveau casting</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Acteur</th>
+                <th>Role</th>
+                <th>CreditOrder</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for casting in castings %}
+            <tr>
+                <td>{{ casting.person.fullname }}</td>
+                <td>{{ casting.role }}</td>
+                <td>{{ casting.creditOrder }}</td>
+                <td>
+                    <a href="{{ path('app_back_casting_edit', {'role': casting.role}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

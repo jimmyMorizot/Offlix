@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une critique{% endblock %}
+
+{% block body %}
+
+<div class="container pt-5">
+    <div class="row mb-2">
+        <div class="col">
+
+            <h1>Ajouter une critique</h1>
+            <h2>{{ movie.title }}</h2>
+
+            {# si on souhaite désactiver la validation HTML5 côté template #}
+            {# form_start(form, {attr: {novalidate: 'novalidate'}}) #}
+            {{ form_start(form) }}
+                {{ form_row(form, {label: false}) }}
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

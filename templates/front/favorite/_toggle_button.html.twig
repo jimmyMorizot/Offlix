@@ -1,0 +1,12 @@
+{# si film en favoris #}
+{# j'utilise la variable global de twig app, pour récupérer mon tableau de session #}
+{# l'id est le label dans la boucle de mes différents fichiers twig, grâce à ça je vérifie si le film est rangé à cette index dans mon tableau de favoris #}
+	{% if app.session.get('favorites')[movie.id] is defined %}
+		<a href="{{ path('favorite_remove', {id:movie.id} )}}" class="movie__favorite fs-1 my-2 mx-3 link-danger"> <i class="bi bi-bookmark-x-fill"></i>
+	</a>
+	{# si film pas en favoris #}
+{% else %}
+	<a href="{{ path( 'favorite_add', {id:movie.id} )}}" class="movie__favorite fs-1 my-2 mx-3 link-danger">
+		<i class="bi bi-bookmark-plus"></i>
+	</a>
+{% endif %}

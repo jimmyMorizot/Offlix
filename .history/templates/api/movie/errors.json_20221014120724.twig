@@ -1,0 +1,9 @@
+{
+	"errors": {
+        {% for error in errors %}
+		"{{ error.propertyPath }}": [
+			"{{ error.message }}"
+		],
+        {% endfor %}
+	}
+}
