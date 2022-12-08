@@ -23,13 +23,13 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 <td>
-                    <a href="{{ path('app_back_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('app_back_user_show', {'id': user.id}) }}">Voir</a>
+                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Pas d'enregistrements trouvés</td>
             </tr>
         {% endfor %}
         </tbody>
