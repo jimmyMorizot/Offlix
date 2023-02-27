@@ -70,11 +70,6 @@ class MovieController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // /!\ attention le slug est notre "id" donc gaffe au SEO
-            // on peut soit :
-            // - créer des redirections 301 des anciennes pages vers les nouvelles
-            // - conserver l'id dnas la route !
-
             $movieRepository->add($movie, true);
 
             $this->addFlash('success', 'Film modifié');

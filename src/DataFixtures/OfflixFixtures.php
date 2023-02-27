@@ -130,7 +130,7 @@ class OfflixFixtures extends Fixture
         // }
 
         //!Genre
-        $populator->addEntity(Genre::class, 3, [
+        $populator->addEntity(Genre::class, 10, [
             'name' => function () use ($faker) {
                 return $faker->unique()->genre();
             },
@@ -189,12 +189,12 @@ class OfflixFixtures extends Fixture
                 return $faker->paragraph();
             },
             'rating' => function () use ($faker) {
-                return $faker->randomDigitNot(6,7,8,9);
+                return $faker->randomDigitNot(6, 7, 8, 9);
             },
             /* 'reactions' => function () use ($faker) {
                 return $faker->lexify();
             }, */
-            
+
         ]);
 
         //!Movie_genre
@@ -223,6 +223,4 @@ class OfflixFixtures extends Fixture
         // on oublie de flush
         $manager->flush();
     }
-
-    
 }
